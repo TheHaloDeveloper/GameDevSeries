@@ -32,18 +32,6 @@ function fadeOutEffect(fadeTarget) {
     }, 10);
 }
 
-let statusDiv = document.getElementById('loading-progress-status');
-function changeStatus(){
-    if(statusDiv.innerHTML == 'Loading.'){
-        statusDiv.innerHTML = 'Loading..';
-    } else if(statusDiv.innerHTML == 'Loading..'){
-        statusDiv.innerHTML = 'Loading...';
-    } else if(statusDiv.innerHTML == 'Loading...'){
-        statusDiv.innerHTML = 'Loading.';
-    }
-}
-let loadingStatus = setInterval(changeStatus, 500);
-
 loadingManager.onLoad = function() {
     fadeOutEffect(document.getElementById("loading"));
 }
@@ -114,9 +102,7 @@ function load(asset, pos=[0, 0, 0], rot=[-Math.PI / 2, Math.PI, Math.PI], scale=
         if(appendTo != undefined){
             appendTo.push(object.scene);
         }
-    }, loadingManager.onProgress(undefined, 100, 1000));
-
-    changeStatus();
+    });
 };
 
 //Decoration
